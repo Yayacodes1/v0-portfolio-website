@@ -10,12 +10,8 @@ export function HeroSection() {
   return (
     <section className="min-h-[90vh] px-6 md:px-12 lg:px-20 xl:px-32">
       <div className="flex min-h-[90vh] flex-col justify-between pb-12 pt-24 md:pt-32">
-        {/* Top anchor - subtle label */}
-        <div className="animate-fade-in">
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60">
-            Independent Developer
-          </span>
-        </div>
+        {/* Top anchor spacer */}
+        <div className="animate-fade-in" />
         
         {/* Main content - asymmetrical layout */}
         <div className="my-auto py-16">
