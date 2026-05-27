@@ -1,7 +1,13 @@
 import type { Metadata, Viewport } from 'next'
-import { Source_Serif_4, Geist_Mono } from 'next/font/google'
+import { Inter, Source_Serif_4, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: '--font-inter',
+  display: 'swap',
+})
 
 const sourceSerif = Source_Serif_4({ 
   subsets: ["latin"],
@@ -44,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${sourceSerif.variable} ${geistMono.variable} bg-background`}>
+    <html lang="en" className={`${inter.variable} ${sourceSerif.variable} ${geistMono.variable} bg-background`}>
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

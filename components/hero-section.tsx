@@ -1,54 +1,65 @@
 "use client"
 
-import { Mail, ArrowDown } from "lucide-react"
+import { ArrowDown } from "lucide-react"
 
 export function HeroSection() {
   const scrollToApps = () => {
     document.getElementById('apps')?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const scrollToContact = () => {
-    document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
-    <section className="px-6 pb-24 pt-32 md:px-12 lg:px-24">
-      <div className="mx-auto max-w-2xl">
-        <h1 className="text-3xl font-medium tracking-tight text-foreground md:text-4xl lg:text-5xl">
-          Yahya Ahmed
-        </h1>
+    <section className="min-h-[90vh] px-6 md:px-12 lg:px-20 xl:px-32">
+      <div className="flex min-h-[90vh] flex-col justify-between pb-12 pt-24 md:pt-32">
+        {/* Top anchor - subtle label */}
+        <div className="animate-fade-in">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60">
+            Independent Developer
+          </span>
+        </div>
         
-        <p className="mt-3 text-lg text-muted-foreground md:text-xl">
-          iOS Developer & Automation Builder
-        </p>
+        {/* Main content - asymmetrical layout */}
+        <div className="my-auto py-16">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
+            {/* Left column - Name and role */}
+            <div className="lg:col-span-7">
+              <h1 className="animate-fade-in font-serif text-[clamp(2.5rem,8vw,5.5rem)] font-light leading-[0.95] tracking-tight text-foreground">
+                Yahya
+                <br />
+                Ahmed
+              </h1>
+              
+              <div className="animate-fade-in-delay-1 mt-8 flex items-center gap-4">
+                <span className="h-px w-12 bg-foreground/20" />
+                <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                  iOS Developer & Automation Builder
+                </p>
+              </div>
+            </div>
+            
+            {/* Right column - Introduction */}
+            <div className="flex flex-col justify-end lg:col-span-5">
+              <p className="animate-fade-in-delay-2 max-w-sm text-balance text-base leading-relaxed text-foreground/70 md:text-lg md:leading-relaxed">
+                I build thoughtful digital products focused on simplicity, performance, and user experience.
+              </p>
+              
+              <div className="animate-fade-in-delay-3 mt-10">
+                <button
+                  onClick={scrollToApps}
+                  className="group inline-flex items-center gap-3 text-sm text-foreground/60 transition-colors hover:text-foreground"
+                >
+                  <span className="font-mono text-xs uppercase tracking-wider">View Work</span>
+                  <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-1" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
         
-        <p className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-foreground/80 md:text-lg md:leading-relaxed">
-          I build fast, thoughtful, and user-focused products — from iOS apps to business automations.
-        </p>
-        
-        <a 
-          href="mailto:yahyaahmed1357@icloud.com"
-          className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <Mail className="h-4 w-4" />
-          yahyaahmed1357@icloud.com
-        </a>
-        
-        <div className="mt-10 flex flex-wrap gap-4">
-          <button
-            onClick={scrollToApps}
-            className="inline-flex items-center gap-2 border border-foreground/20 bg-transparent px-5 py-2.5 text-sm font-medium text-foreground transition-all hover:border-foreground/40 hover:bg-foreground/5"
-          >
-            View Apps
-            <ArrowDown className="h-3.5 w-3.5" />
-          </button>
-          
-          <button
-            onClick={scrollToContact}
-            className="inline-flex items-center gap-2 bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-all hover:bg-foreground/90"
-          >
-            Work With Me
-          </button>
+        {/* Bottom anchor - scroll indicator */}
+        <div className="animate-fade-in-delay-3 flex justify-end">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/40">
+            Scroll
+          </span>
         </div>
       </div>
     </section>

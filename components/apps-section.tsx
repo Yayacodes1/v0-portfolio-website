@@ -1,26 +1,32 @@
-import { ExternalLink } from "lucide-react"
+"use client"
+
+import { ArrowUpRight } from "lucide-react"
+import Image from "next/image"
 
 const apps = [
   {
     name: "NOTK",
     subtitle: "AI Note Taker",
-    description: "Intelligent note-taking powered by AI for capturing and organizing your thoughts effortlessly.",
+    description: "Intelligent note-taking powered by AI. Capture thoughts, organize ideas, and let AI help you make sense of your notes effortlessly.",
     url: "https://apps.apple.com/us/app/notk-%D9%86%D9%88%D8%AA%D9%83-ai-note-taker/id6751481106",
-    technologies: ["Swift", "SwiftUI", "Firebase"],
+    technologies: ["Swift", "SwiftUI", "Firebase", "REST APIs"],
+    icon: "/app-icons/notk.png",
   },
   {
     name: "Miqat",
     subtitle: "Never Miss a Salah",
-    description: "Precise prayer time notifications and tracking to help you maintain your daily prayers.",
+    description: "Precise prayer time notifications with beautiful minimal design. Stay connected to your daily prayers with accurate timing and gentle reminders.",
     url: "https://apps.apple.com/us/app/miqat-never-miss-a-salah/id6760215262",
-    technologies: ["Swift", "SwiftUI", "REST APIs"],
+    technologies: ["Swift", "SwiftUI", "REST APIs", "Core Location"],
+    icon: "/app-icons/miqat.png",
   },
   {
     name: "TafsirAi",
     subtitle: "Quran Interpretation",
-    description: "AI-powered Quran interpretation and exploration for deeper understanding.",
+    description: "AI-powered Quran exploration for deeper understanding. Discover interpretations, context, and insights through intelligent search and analysis.",
     url: "https://apps.apple.com/us/app/tafsirai/id6743822243",
-    technologies: ["Swift", "SwiftUI", "Firebase"],
+    technologies: ["Swift", "SwiftUI", "Firebase", "AI/ML"],
+    icon: "/app-icons/tafsirai.png",
   },
 ]
 
@@ -28,64 +34,91 @@ const allTechnologies = ["Swift", "SwiftUI", "Firebase", "REST APIs", "Git & Git
 
 export function AppsSection() {
   return (
-    <section id="apps" className="border-t border-border/50 px-6 py-24 md:px-12 lg:px-24">
-      <div className="mx-auto max-w-4xl">
-        <p className="text-xs uppercase tracking-widest text-muted-foreground">
-          Apps
-        </p>
-        <h2 className="mt-3 text-2xl font-medium tracking-tight text-foreground md:text-3xl">
-          Published Work
-        </h2>
-        
-        <div className="mt-12 space-y-8">
-          {apps.map((app) => (
-            <a
-              key={app.name}
-              href={app.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block border-b border-border/30 pb-8 transition-colors last:border-0"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <div className="flex items-baseline gap-3">
-                    <h3 className="text-lg font-medium text-foreground group-hover:text-foreground/80 md:text-xl">
-                      {app.name}
-                    </h3>
-                    <span className="text-sm text-muted-foreground">
-                      {app.subtitle}
+    <section id="apps" className="px-6 py-32 md:px-12 lg:px-20 xl:px-32">
+      {/* Section header */}
+      <div className="mb-24 grid gap-6 lg:grid-cols-12">
+        <div className="lg:col-span-3">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60">
+            01 — Apps
+          </span>
+        </div>
+        <div className="lg:col-span-9">
+          <h2 className="max-w-2xl font-serif text-3xl font-light leading-tight tracking-tight text-foreground md:text-4xl lg:text-5xl">
+            Published Work
+          </h2>
+        </div>
+      </div>
+
+      {/* App showcases */}
+      <div className="space-y-32">
+        {apps.map((app, index) => (
+          <article key={app.name} className="group">
+            <div className={`grid items-start gap-8 lg:grid-cols-12 lg:gap-12 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+              {/* App icon placeholder */}
+              <div className={`lg:col-span-4 ${index % 2 === 1 ? 'lg:col-start-9' : ''}`}>
+                <div className="relative aspect-square w-32 overflow-hidden rounded-2xl bg-muted/50 shadow-sm md:w-40">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="font-serif text-4xl font-light text-foreground/20">
+                      {app.name[0]}
                     </span>
                   </div>
-                  
-                  <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground md:text-base">
-                    {app.description}
-                  </p>
-                  
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {app.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-xs text-muted-foreground/70"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                </div>
+              </div>
+              
+              {/* App details */}
+              <div className={`lg:col-span-8 ${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
+                <div className="flex items-baseline gap-4">
+                  <h3 className="font-serif text-2xl font-light tracking-tight text-foreground md:text-3xl">
+                    {app.name}
+                  </h3>
+                  <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground/60">
+                    {app.subtitle}
+                  </span>
                 </div>
                 
-                <ExternalLink className="h-4 w-4 flex-shrink-0 text-muted-foreground/50 transition-colors group-hover:text-foreground" />
+                <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/60 md:text-lg md:leading-relaxed">
+                  {app.description}
+                </p>
+                
+                {/* Technologies */}
+                <div className="mt-8 flex flex-wrap gap-x-4 gap-y-2">
+                  {app.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground/50"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                
+                {/* App Store link */}
+                <a
+                  href={app.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 inline-flex items-center gap-2 border-b border-foreground/20 pb-1 text-sm text-foreground/70 transition-all hover:border-foreground/40 hover:text-foreground"
+                >
+                  <span>View on App Store</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
               </div>
-            </a>
-          ))}
+            </div>
+          </article>
+        ))}
+      </div>
+      
+      {/* Technologies summary */}
+      <div className="mt-32 grid gap-6 border-t border-border/30 pt-12 lg:grid-cols-12">
+        <div className="lg:col-span-3">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60">
+            Stack
+          </span>
         </div>
-        
-        <div className="mt-16">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground">
-            Technologies
-          </p>
-          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+        <div className="lg:col-span-9">
+          <div className="flex flex-wrap gap-x-8 gap-y-3">
             {allTechnologies.map((tech) => (
-              <span key={tech} className="text-sm text-foreground/70">
+              <span key={tech} className="text-sm text-foreground/50">
                 {tech}
               </span>
             ))}
