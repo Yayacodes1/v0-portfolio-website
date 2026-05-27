@@ -10,23 +10,23 @@ const apps = [
     description: "Intelligent note-taking powered by AI. Capture thoughts, organize ideas, and let AI help you make sense of your notes effortlessly.",
     url: "https://apps.apple.com/us/app/notk-%D9%86%D9%88%D8%AA%D9%83-ai-note-taker/id6751481106",
     technologies: ["Swift", "SwiftUI", "Firebase", "REST APIs"],
-    icon: "/app-icons/notk.png",
+    icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_7126-UCVuZTvESaieqlZVVFVxKJoYxp2yhO.jpg",
   },
   {
-    name: "Miqat",
+    name: "Miyqat",
     subtitle: "Never Miss a Salah",
     description: "Precise prayer time notifications with beautiful minimal design. Stay connected to your daily prayers with accurate timing and gentle reminders.",
     url: "https://apps.apple.com/us/app/miqat-never-miss-a-salah/id6760215262",
     technologies: ["Swift", "SwiftUI", "REST APIs", "Core Location"],
-    icon: "/app-icons/miqat.png",
+    icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_7125-FhDso7S4PuNe19rTBitSZ6KrbnX289.jpg",
   },
   {
-    name: "TafsirAi",
+    name: "Tafsir.AI",
     subtitle: "Quran Interpretation",
     description: "AI-powered Quran exploration for deeper understanding. Discover interpretations, context, and insights through intelligent search and analysis.",
     url: "https://apps.apple.com/us/app/tafsirai/id6743822243",
     technologies: ["Swift", "SwiftUI", "Firebase", "AI/ML"],
-    icon: "/app-icons/tafsirai.png",
+    icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_7124-25hK5Z4PLBahRLJDUeQ5SjkFshPDZw.jpg",
   },
 ]
 
@@ -54,14 +54,15 @@ export function AppsSection() {
         {apps.map((app, index) => (
           <article key={app.name} className="group">
             <div className={`grid items-start gap-8 lg:grid-cols-12 lg:gap-12 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-              {/* App icon placeholder */}
+              {/* App icon */}
               <div className={`lg:col-span-4 ${index % 2 === 1 ? 'lg:col-start-9' : ''}`}>
-                <div className="relative aspect-square w-32 overflow-hidden rounded-2xl bg-muted/50 shadow-sm md:w-40">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-serif text-4xl font-light text-foreground/20">
-                      {app.name[0]}
-                    </span>
-                  </div>
+                <div className="relative aspect-square w-32 overflow-hidden rounded-[22px] bg-muted/50 shadow-lg md:w-40">
+                  <Image
+                    src={app.icon}
+                    alt={`${app.name} app icon`}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               </div>
               
